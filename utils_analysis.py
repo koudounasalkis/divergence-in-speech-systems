@@ -109,6 +109,7 @@ def plotComparisonShapleyValues(
 
     ax1.set_yticks(range(len(sh_score_1)))
     ax1.set_yticklabels(list(sh_score_1.keys()))
+    ax1.tick_params(axis="x", labelsize=labelsize)
 
     if len(title) > 1:
         ax1.set_title(title[0], fontsize=titlesize)
@@ -124,6 +125,7 @@ def plotComparisonShapleyValues(
     )
     ax2.set_yticks(range(len(sh_score_2)))
     ax2.set_yticklabels(list(sh_score_2.keys()))
+    ax2.tick_params(axis="x", labelsize=labelsize)
 
     if len(title) > 1:
         ax2.set_title(f"{title[1]}", fontsize=titlesize)
@@ -371,6 +373,7 @@ def plotShapleyValue(
         ax.set_yticks(range(len(sh_plt)), minor=False)
         ax.set_yticklabels(list(sh_plt.keys()), minor=False)
         ax.tick_params(axis="y", labelsize=labelsize)
+        ax.tick_params(axis="x", labelsize=labelsize)
 
         if xlabel:
             ax.set_xlabel(f"${div_name}({i_name}|{p_name})$", size=labelsize)
@@ -417,7 +420,8 @@ def plotMultipleSV(
         xlabel=False,
         show_figure=True,
         saveFig=True,
-        nameFig=None
+        nameFig=None,
+        legend=True
     ):
         import matplotlib.pyplot as plt
 
@@ -456,7 +460,9 @@ def plotMultipleSV(
         ax.set_yticklabels(sh_plt_1.keys(), minor=False)
         ax.tick_params(axis="y", labelsize=labelsize)
         ax.tick_params(axis="x", labelsize=labelsize)
-        ax.legend(fontsize=12)
+        
+        if legend:
+            ax.legend(fontsize=12)
 
         if xlabel:
             ax.set_xlabel(f"${div_name}({i_name}|{p_name})$", size=labelsize+2)
