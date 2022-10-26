@@ -94,6 +94,10 @@ def plotComparisonShapleyValues(
         sh_score_1 = { k: v for k, v in sorted(sh_score_1.items(), key=lambda item: item[0], reverse=True) }
         sh_score_2 = { k: v for k, v in sorted(sh_score_2.items(), key=lambda item: item[0], reverse=True) }
 
+    if sort == "paper":
+        sh_score_1 = { k: v*100 for k, v in (sh_score_1.items()) }
+        sh_score_2 = { k: v*100 for k, v in (sh_score_2.items()) }
+
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=sizeFig, dpi=100, sharex=sharedAxis)
 
@@ -349,18 +353,21 @@ def plotShapleyValue(
         fig, ax = plt.subplots(1, 1, figsize=sizeFig, dpi=100)
 
         if shapley_values is None and itemset is None:
-            # todo
             print("Error")
             return -1
+
         if shapley_values is None and itemset:
             shapley_values = self.computeShapleyValue(itemset)
-        # plt.gcf().set_size_inches(20, 10)
+
         if abbreviations:
             shapley_values = abbreviateDict(shapley_values, abbreviations)
+
         sh_plt = {str(",".join(list(k))): v for k, v in shapley_values.items()}
         metric = f"{div_name}_{{{self.metric_name}}}" if metric is None else metric
+
         if sortedF:
-            sh_plt = {k: v for k, v in sorted(sh_plt.items(), key=lambda item: item[1])}
+            sh_plt = {k: v*100 for k, v in sorted(sh_plt.items(), key=lambda item: item[1])}
+
         ax.barh(
             range(len(sh_plt)),
             sh_plt.values(),
@@ -377,18 +384,13 @@ def plotShapleyValue(
 
         if xlabel:
             ax.set_xlabel(f"${div_name}({i_name}|{p_name})$", size=labelsize)
-            # - Divergence contribution
 
         title = "" if title is None else title
-        title = f"{title} ${metric}$" if metric != "" else title  # Divergence
+        title = f"{title} ${metric}$" if metric != "" else title  
 
         ax.set_title(title, fontsize=titlesize)
-        # plt.rcParams["figure.figsize"], plt.rcParams["figure.dpi"] = sizeFig, 100
         if saveFig:
             nameFig = "./shap.pdf" if nameFig is None else nameFig
-            # plt.savefig(f"{nameFig}", bbox_inches="tight", pad=0.05)
-            # TMP - NEW
-            # TODO
             plt.savefig(
                 f"{nameFig}",
                 bbox_inches="tight",
@@ -401,8 +403,8 @@ def plotShapleyValue(
             plt.close()
 
 
-def doit(d, order):
-  return [d[k] for k in sorted(order, key=order.get)]
+def order_by_key(d, order):
+  return [d[k]*100 for k in sorted(order, key=order.get)]
 
 
 
@@ -421,14 +423,19 @@ def plotMultipleSV(
         show_figure=True,
         saveFig=True,
         nameFig=None,
-        legend=True
+        legend=True,
+        paper_exp=True,
     ):
         import matplotlib.pyplot as plt
 
         fig, ax = plt.subplots(1, 1, figsize=sizeFig, dpi=100)
 
-        sh_plt_1 = {str(",".join(list(k))): v for k, v in shapley_values_1.items()}
-        sh_plt_2 = {str(",".join(list(k))): v for k, v in shapley_values_2.items()}
+        if paper_exp:
+            sh_plt_1 = {str(",".join(list(k))): v*100 for k, v in shapley_values_1.items()}
+            sh_plt_2 = {str(",".join(list(k))): v*100 for k, v in shapley_values_2.items()}
+        else:
+            sh_plt_1 = {str(",".join(list(k))): v for k, v in shapley_values_1.items()}
+            sh_plt_2 = {str(",".join(list(k))): v for k, v in shapley_values_2.items()}
 
         if sortedF:
             sh_plt_1 = {k: v for k, v in sorted(sh_plt_1.items(), key=lambda item: item[1])}
@@ -446,7 +453,7 @@ def plotMultipleSV(
 
         ax.barh(
             range(0,len(sh_plt_1),1),
-            doit(shapley_values_2, shapley_values_1),
+            order_by_key(shapley_values_2, shapley_values_1),
             height=height,
             align="center",
             color="#83C4FA",
