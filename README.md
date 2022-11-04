@@ -1,5 +1,5 @@
-# divergence-in-speech-systems
-Code associated with the paper "Exploring Subgroup Performance in Speech Models".
+# Exploring Subgroup Performance in End-to-End Speech Models
+Code associated with the paper "Exploring Subgroup Performance in End-to-End Speech Models".
 
 In this repository, you will find the code to replicate our experiments.  
 We do not include the dataset used in the paper as it is publicly available and downloadable from the official site. 
