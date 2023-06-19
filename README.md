@@ -1,5 +1,5 @@
 # Exploring Subgroup Performance in End-to-End Speech Models
-Code associated with the paper [**"Exploring Subgroup Performance in End-to-End Speech Models"**](https://gattanasio.cc/publication/2023-subgroup-divergence-slu/2023-subgroup-divergence-slu.pdf), accepted at ICASSP 2023.
+Code associated with the paper [**"Exploring Subgroup Performance in End-to-End Speech Models"**](https://ieeexplore.ieee.org/abstract/document/10095284), accepted at ICASSP 2023.
 
 In this repository, you will find the code to replicate our experiments.  
 We do not include the dataset used in the paper as it is publicly available and downloadable from the [official site](https://fluent.ai/fluent-speech-commands-a-dataset-for-spoken-language-understanding-research/).
@@ -21,7 +21,7 @@ Our code was tested on Python 3.10.4. To make it work, you will need:
 ## Running the Experiments
 Use the `ic_fsc.ipynb` notebook to run the inference of the selected models on the FSC dataset, and to extract demographic, signal- and dataset- related metadata, building a `.csv` file such as the ones in the `data_precomputed` folder.
 
-To reproduce the experiments of the paper, you can directly run the `divexplorer_analysis.ipynb` notebook, which leverages the files already computed in `data_precomputed`. 
+To reproduce the paper's experiments, you can directly run the `divexplorer_analysis.ipynb` notebook, which leverages the files already computed in `data_precomputed`. 
 
 ------------------ 
 
@@ -30,7 +30,7 @@ You can investigate the sources of errors for a model (i.e., wav2vec 2.0 large),
 
 ![wav2vec 2.0 base to large - subgroups](images/w2v2l_most_divergent.png)
 
-You can also investigate the gain in performance at the subgroup-level when changing one model (i.e., wav2vec 2.0 base) with another one (i.e., HuBERT base). For example, the following table shows the subgroups that most benefit or fail to benefit when changing these two models:
+You can also investigate the gain in performance at the subgroup level when changing one model (i.e., wav2vec 2.0 base) with another one (i.e., HuBERT base). For example, the following table shows the subgroups that most benefit or fail to benefit when changing these two models:
 
 ![wav2vec 2.0 base to HuBERT base - subgroups](images/w2v2_base_to_hub_base.png)
 
@@ -45,19 +45,19 @@ Finally, you can exploit the global Shapley values to investigate the impact of 
 ## Citation
 If you use this code in your research, please cite our paper:
 ```
-@INPROCEEDINGS{koudounas2023,
-    author={Koudounas, Alkis and Pastor, Eliana and Attanasio, Giuseppe and Mazzia, Vittorio and Giollo, Manuel and Gueudre, Thomas and Cagliero, Luca and de Alfaro, Luca and Baralis, Elena and Amberti, Daniele},
-    booktitle={ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
-    title={Exploring Subgroup Performance in End-To-End Speech Models}, 
-    year={2023},
-    volume={},
-    number={},
-    pages={},
-    doi={}}
+@INPROCEEDINGS{10095284,
+  author={Koudounas, Alkis and Pastor, Eliana and Attanasio, Giuseppe and Mazzia, Vittorio and Giollo, Manuel and Gueudre, Thomas and Cagliero, Luca and de Alfaro, Luca and Baralis, Elena and Amberti, Daniele},
+  booktitle={ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
+  title={Exploring Subgroup Performance in End-to-End Speech Models}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-5},
+  doi={10.1109/ICASSP49357.2023.10095284}}
 ```
 
 ## License
 This code is released under the Apache 2.0 license. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
-For any question, please contact [Alkis Koudounas](mailto:alkis.koudounas@polito.it).
+For any questions, please contact [Alkis Koudounas](mailto:alkis.koudounas@polito.it).
