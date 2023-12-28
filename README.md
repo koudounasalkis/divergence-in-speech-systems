@@ -44,8 +44,9 @@ Finally, you can exploit the global Shapley values to investigate the impact of 
 
 ## Citation
 If you use this code in your research, please cite our paper:
-```
-@INPROCEEDINGS{10095284,
+
+```bibtex
+@INPROCEEDINGS{koudounas2023,
   author={Koudounas, Alkis and Pastor, Eliana and Attanasio, Giuseppe and Mazzia, Vittorio and Giollo, Manuel and Gueudre, Thomas and Cagliero, Luca and de Alfaro, Luca and Baralis, Elena and Amberti, Daniele},
   booktitle={ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
   title={Exploring Subgroup Performance in End-to-End Speech Models}, 
