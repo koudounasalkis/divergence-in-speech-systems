@@ -1,4 +1,7 @@
 # Exploring Subgroup Performance in End-to-End Speech Models
+
+[![official paper](https://img.shields.io/badge/paper-ICASSP%202023-b31b1b.svg)](https://ieeexplore.ieee.org/abstract/document/10095284)
+
 Code associated with the paper [**"Exploring Subgroup Performance in End-to-End Speech Models"**](https://ieeexplore.ieee.org/abstract/document/10095284), accepted at ICASSP 2023.
 
 In this repository, you will find the code to replicate our experiments.  
